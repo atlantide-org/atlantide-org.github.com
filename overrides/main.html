@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% if page and page.file %}
+    <link rel="alternate" type="text/markdown" href="{{ config.site_url }}{{ page.file.src_uri }}" title="This page as Markdown">
+  {% endif %}
+  <link rel="alternate" type="text/plain" href="{{ config.site_url }}llms.txt" title="llms.txt">
+{% endblock %}

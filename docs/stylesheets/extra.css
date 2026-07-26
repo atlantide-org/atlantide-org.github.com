@@ -1,0 +1,13 @@
+/* Page-action buttons are <a> in Material; the copy button is a <button>. */
+.md-copy-page {
+  cursor: pointer;
+}
+.md-copy-page--done {
+  color: var(--md-accent-fg-color);
+}
+
+/* The tagline under the home page title. */
+.md-typeset .hero-tagline {
+  font-size: 1.25em;
+  margin-top: -0.5em;
+}

@@ -1,0 +1,18 @@
+[project]
+name = "atlantide-docs"
+version = "0.0.0"
+description = "Documentation site for Atlantide, published to atlantide-org.github.io"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+docs = [
+    "mkdocs>=1.6,<2",
+    "mkdocs-material>=9.6",
+    "pymdown-extensions>=10",
+]
+
+# Nothing here is installable — this project is a dependency manifest for the
+# site build, not a package.
+[tool.uv]
+package = false

@@ -1,0 +1,31 @@
+# Site build output
+site/
+
+# Shallow clone of the atlantide repo, made by the docs build in CI
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Tool caches
+.ruff_cache/
+.mypy_cache/
+
+# OS
+.DS_Store
+
+# --- atlantide ---
+# Derived, secret, or machine-local. None of it belongs in git.
+atlantide.db          # local sqlite state
+atlantide.db-wal      # sqlite write-ahead log (the backend runs in WAL mode)
+atlantide.db-shm
+atlantide.key         # secrets-store encryption key -- never commit this
+atlantide.secrets     # encrypted name -> value store
+.atlantis/            # vendored components; rebuild with `atlantide component vendor`
+*.atlas               # built artifacts (`atlantide build`)
+*.atlas-state         # state snapshots (`atlantide state backup`)
+# atlantide.lock is NOT ignored: it pins component commits and their hashes, and
+# belongs in git the way any lockfile does.
+# -----------------------------------------------------------------------------

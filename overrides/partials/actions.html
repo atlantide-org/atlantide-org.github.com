@@ -1,0 +1,19 @@
+{#-
+  Material's page actions, plus two for readers who want the source: a link to
+  the page's Markdown (written by scripts/llms.py) and a button that copies it,
+  for pasting into an agent's context.
+-#}
+{% if page.edit_url and "content.action.edit" in features %}
+  <a href="{{ page.edit_url }}" title="{{ lang.t('action.edit') }}" class="md-content__button md-icon" rel="edit">
+    {% include ".icons/material/file-edit-outline.svg" %}
+  </a>
+{% endif %}
+{% if page.file %}
+  {% set md_url = base_url ~ "/" ~ page.file.src_uri %}
+  <button type="button" class="md-content__button md-icon md-copy-page" data-md-src="{{ md_url }}" title="Copy page as Markdown" aria-label="Copy page as Markdown">
+    {% include ".icons/material/content-copy.svg" %}
+  </button>
+  <a href="{{ md_url }}" title="View as Markdown" class="md-content__button md-icon" type="text/markdown">
+    {% include ".icons/material/language-markdown-outline.svg" %}
+  </a>
+{% endif %}

@@ -1,0 +1,15 @@
+# Project defaults, found by walking up from the working directory, so every
+# command means the same thing from any subdirectory. Relative paths below
+# resolve against THIS file's directory, not the one you are standing in.
+config = "infra.py"
+state  = "atlantide.db"
+
+# A profile overlays the top level, table by table:
+#     atlantide --profile prod plan
+# [profile.prod]
+# parallelism = 16
+# [profile.prod.state]
+# backend    = "s3"
+# bucket     = "acme-atlantide-state"
+# key        = "prod/atlantide.json"
+# lock_table = "atlantide-locks"

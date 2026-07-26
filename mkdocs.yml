@@ -1,0 +1,129 @@
+site_name: Atlantide
+site_description: Typed, deterministic Infrastructure-as-Code for Python.
+site_url: https://atlantide-org.github.io/
+# The header links to the code repo; edit links point at this one, which is
+# where the pages actually live.
+repo_url: https://github.com/atlantide-org/atlantide
+repo_name: atlantide-org/atlantide
+edit_uri: https://github.com/atlantide-org/atlantide-org.github.io/edit/main/docs/
+copyright: GPL-3.0-only
+
+strict: true
+
+# With strict, these become build failures. An anchor that no longer exists is
+# the failure mode that matters here: this section is heavily cross-linked and
+# the headings carry numbers that move.
+validation:
+  links:
+    anchors: warn
+    absolute_links: warn
+    unrecognized_links: warn
+
+theme:
+  name: material
+  custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.action.edit
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/copy-page.js
+
+hooks:
+  # Emits the machine-readable side of the site: llms.txt, llms-full.txt, a
+  # clean .md next to every page, and the agent files under agents/.
+  - scripts/llms.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.snippets:
+      # Includes resolve against agents/, so SKILL.md has one source and the
+      # page that presents it can never drift from the file agents download.
+      base_path: [agents]
+      check_paths: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        # Material renders these itself, themed to match light and dark mode.
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Get started:
+      - Installation: install.md
+      - Coming from Terraform: comparison.md
+  - Guide:
+      - CLI: reference/cli.md
+      - Configuration: reference/configuration.md
+      - Authoring: reference/authoring.md
+      - Policies: reference/policies.md
+      - Remote state: reference/remote-state.md
+      - Providers: reference/providers.md
+      - Components: reference/components.md
+      - CI and automation: reference/ci.md
+      - Troubleshooting: reference/troubleshooting.md
+  - How it works:
+      - how-it-works/index.md
+      - Walkthrough: how-it-works/walkthrough.md
+      - The Merkle hash: how-it-works/merkle.md
+      - When apply fails: how-it-works/failure.md
+  - Building on AWS: aws/index.md
+  - For agents: agents.md
+  - Glossary: glossary.md
